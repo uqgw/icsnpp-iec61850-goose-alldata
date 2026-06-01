@@ -1,5 +1,5 @@
 [package]
-name = icsnpp-iec61850-gooseall-data
+name = icsnpp-iec61850-goose-alldata
 description = "Zeek Spicy-based IEC 61850 GOOSE parser with full allData extraction"
 version = 0.1.0
 tags = zeek, spicy, ics, iec61850, goose
