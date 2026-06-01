@@ -1,20 +1,15 @@
 [package]
+name = icsnpp-iec61850-gooseall-data
+description = "Zeek Spicy-based IEC 61850 GOOSE parser with full allData extraction"
+version = 0.1.0
+tags = zeek, spicy, ics, iec61850, goose
 script_dir = scripts
-test_command = cd testing && btest -c btest.cfg
-summary = IEC 61850 Goose packets
-description = An IEC 61850 Goose packet analyzer on Spicy
-depends = 
-	zeek >=4.0.0
-build_command = mkdir -p build && cd build && SPICYZ=$(command -v spicyz || echo %(package_base)s/spicy-plugin/build/bin/spicyz) cmake .. && cmake --build .
+plugin_dir = .
+test_dir = tests
 
-[template]
-source = https://github.com/zeek/package-template
-version = v2.0.0
-zkg_version = 2.13.0
-features = spicy-packet-analyzer
+[author]
+name = "Clarec"
+email = "iamanthrax2705@outlook.com"
 
-[template_vars]
-name = spicy-goose
-analyzer = goose
-unit = Message
-
+[build]
+type = cmake
