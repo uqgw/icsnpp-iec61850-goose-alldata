@@ -76,3 +76,19 @@ event goose::goose_packet(pkt: raw_pkt_hdr, appid: int, length: int, gocbRef: st
 
     Log::write(goose::LOG, rec);
 }
+
+module ICSNPP::IEC61850_GOOSE_ALLDATA;
+
+export {
+    redef enum Log::ID += { LOG };
+
+    type GooseInfo: record {
+        # existing fields...
+        allData: vector of string &optional;
+    };
+}
+
+event zeek_init()
+    {
+    Log::create_stream(LOG, [$columns=GooseInfo, $path="goose"]);
+    }
