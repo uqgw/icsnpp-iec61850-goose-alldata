@@ -1,0 +1,2 @@
+# @TEST-EXEC: zeek -Cr Traces/goose-allData.pcap icsnpp-iec61850-goose-alldata
+# @TEST-EXEC: btest-diff goose.log
