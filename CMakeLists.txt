@@ -1,18 +1,13 @@
-cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5)
+project(icsnpp-iec61850-goose-alldata)
 
-project(goose LANGUAGES C)
+find_package(Zeek REQUIRED)
+include(ZeekPlugin)
 
-list(PREPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
-find_package(SpicyPlugin REQUIRED)
+add_subdirectory(spicy)
+add_subdirectory(tests)
 
-# Set mininum versions that this plugin needs. Make sure to use "x.y.z" format.
-# spicy_require_version("1.2.0")
-# spicy_plugin_require_version("0.99.0")
-# zeek_require_version("5.0.0")
-
-if (NOT CMAKE_BUILD_TYPE)
-    # Default to release build.
-    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "")
-endif ()
-
-add_subdirectory(analyzer)
+zeek_plugin_begin(ICSNPP IEC61850_GOOSE_ALLDATA)
+    zeek_plugin_cc()
+    zeek_plugin_link_library(spicy-goose)
+zeek_plugin_end()
